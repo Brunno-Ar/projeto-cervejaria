@@ -22,13 +22,13 @@ import com.algaworks.brewer.service.CadastroCervejaService;
 @Controller
 @RequestMapping("/cervejas")
 public class CervejasController {
-	
+
 	@Autowired
 	private Estilos estilos;
-	
+
 	@Autowired
 	private CadastroCervejaService cadastroCervejaService;
-	
+
 	@Autowired
 	private Cervejas cervejas;
 
@@ -40,27 +40,28 @@ public class CervejasController {
 		mv.addObject("origens", Origem.values());
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/novo", method = RequestMethod.POST)
-	public ModelAndView cadastrar(@Valid Cerveja cerveja, BindingResult result, Model model, RedirectAttributes attributes) {
+	public ModelAndView cadastrar(@Valid Cerveja cerveja, BindingResult result, Model model,
+			RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			return novo(cerveja);
 		}
-		
+
 		cadastroCervejaService.salvar(cerveja);
 		attributes.addFlashAttribute("mensagem", "Cerveja salva com sucesso!");
 		return new ModelAndView("redirect:/cervejas/novo");
 	}
-	
+
 	@GetMapping
 	public ModelAndView pesquisar() {
 		ModelAndView mv = new ModelAndView("cerveja/PesquisaCerveja");
 		mv.addObject("estilos", estilos.findAll());
 		mv.addObject("sabores", Sabor.values());
 		mv.addObject("origens", Origem.values());
-		
+
 		mv.addObject("cervejas", cervejas.findAll());
 		return mv;
 	}
-	
+
 }
