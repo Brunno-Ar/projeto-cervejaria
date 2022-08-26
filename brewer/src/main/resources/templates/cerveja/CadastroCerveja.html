@@ -68,8 +68,7 @@
 							<select id="estilo" class="form-control" th:field="*{estilo}">
 								<option value="">Selecione o estilo</option>
 								<option th:each="estilo : ${estilos}"
-									th:value="${estilo.codigo}" th:text="${estilo.nome}">Pale
-									lager</option>
+									th:value="${estilo.codigo}" th:text="${estilo.nome}"></option>
 							</select>
 
 							<div class="bw-field-action__icon">
