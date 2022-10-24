@@ -17,4 +17,9 @@ public class SegurancaController {
 		return "Login";
 	}
 	
+	@GetMapping
+	public String acessoNegado() {
+		return "403";
+	}
+	
 }
