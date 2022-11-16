@@ -14,7 +14,7 @@ public class GrupoConverter implements Converter<String, Grupo> {
 			grupo.setCodigo(Long.valueOf(codigo));
 			return grupo;
 		}
-
+		
 		return null;
 	}
 

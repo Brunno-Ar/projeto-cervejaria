@@ -22,23 +22,20 @@ public class AppUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private Usuarios usuarios;
-
+	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		Optional<Usuario> usuarioOptional = usuarios.porEmailEAtivo(email);
-
-		Usuario usuario = usuarioOptional
-				.orElseThrow(() -> new UsernameNotFoundException("Usuário e/ou Senha incorretos"));
+		Usuario usuario = usuarioOptional.orElseThrow(() -> new UsernameNotFoundException("Usuário e/ou senha incorretos"));
 		return new UsuarioSistema(usuario, getPermissoes(usuario));
 	}
 
 	private Collection<? extends GrantedAuthority> getPermissoes(Usuario usuario) {
 		Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-
+		
 		List<String> permissoes = usuarios.permissoes(usuario);
-
 		permissoes.forEach(p -> authorities.add(new SimpleGrantedAuthority(p.toUpperCase())));
-
+		
 		return authorities;
 	}
 

@@ -45,9 +45,9 @@ public class Cliente implements Serializable {
 	@Column(name = "tipo_pessoa")
 	private TipoPessoa tipoPessoa;
 
+	@NotBlank(message = "CPF/CNPJ é obrigatório")
 	@CPF(groups = CpfGroup.class)
 	@CNPJ(groups = CnpjGroup.class)
-	@NotBlank(message = "CPF/CNPJ é obrigatório")
 	@Column(name = "cpf_cnpj")
 	private String cpfOuCnpj;
 
@@ -58,13 +58,12 @@ public class Cliente implements Serializable {
 
 	@Embedded
 	private Endereco endereco;
-
-	@PrePersist
-	@PreUpdate
-	private void prePresistPreUpdate() {
+	
+	@PrePersist @PreUpdate
+	private void prePersistPreUpdate() {
 		this.cpfOuCnpj = TipoPessoa.removerFormatacao(this.cpfOuCnpj);
 	}
-
+	
 	@PostLoad
 	private void postLoad() {
 		this.cpfOuCnpj = this.tipoPessoa.formatar(this.cpfOuCnpj);
@@ -125,9 +124,9 @@ public class Cliente implements Serializable {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-
-	public String getCpfOuCnpjSemFormatcao() {
-		return TipoPessoa.removerFormatacao(cpfOuCnpj);
+	
+	public String getCpfOuCnpjSemFormatacao() {
+		return TipoPessoa.removerFormatacao(this.cpfOuCnpj);
 	}
 
 	@Override

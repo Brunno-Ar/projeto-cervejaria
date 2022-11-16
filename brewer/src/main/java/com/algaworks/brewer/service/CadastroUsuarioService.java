@@ -30,7 +30,7 @@ public class CadastroUsuarioService {
 		}
 
 		if (usuario.isNovo() && StringUtils.isEmpty(usuario.getSenha())) {
-			throw new SenhaObrigatoriaUsuarioException("Senha é Obrigatoria para novo usuario");
+			throw new SenhaObrigatoriaUsuarioException("Senha é obrigatória para novo usuário");
 		}
 
 		if (usuario.isNovo()) {
@@ -39,6 +39,11 @@ public class CadastroUsuarioService {
 		}
 
 		usuarios.save(usuario);
+	}
+
+	@Transactional
+	public void alterarStatus(Long[] codigos, StatusUsuario statusUsuario) {
+		statusUsuario.executar(codigos, usuarios);
 	}
 
 }

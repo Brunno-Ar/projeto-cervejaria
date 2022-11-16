@@ -8,7 +8,6 @@ import com.algaworks.brewer.repository.filter.CervejaFilter;
 
 public interface CervejasQueries {
 
-	public Page<Cerveja> filtrar(CervejaFilter filtro, Pageable pageable );
-	
+	public Page<Cerveja> filtrar(CervejaFilter filtro, Pageable pageable);
 	
 }

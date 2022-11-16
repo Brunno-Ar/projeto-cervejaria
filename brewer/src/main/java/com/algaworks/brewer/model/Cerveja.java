@@ -1,5 +1,6 @@
 package com.algaworks.brewer.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
@@ -27,7 +28,9 @@ import com.algaworks.brewer.validation.SKU;
 
 @Entity
 @Table(name = "cerveja")
-public class Cerveja {
+public class Cerveja implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,31 +78,15 @@ public class Cerveja {
 	@ManyToOne
 	@JoinColumn(name = "codigo_estilo")
 	private Estilo estilo;
-	
+
 	private String foto;
 
 	@Column(name = "content_type")
 	private String contentType;
-	
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-
-	public String getContentType() {
-		return contentType;
-	}
-
-	public void setContentType(String contentType) {
-		this.contentType = contentType;
-	}
 
 	@PrePersist
 	@PreUpdate
-	private void prePersitUpdate() {
+	private void prePersistUpdate() {
 		sku = sku.toUpperCase();
 	}
 
@@ -189,6 +176,22 @@ public class Cerveja {
 
 	public void setEstilo(Estilo estilo) {
 		this.estilo = estilo;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
 	}
 	
 	public String getFotoOuMock() {

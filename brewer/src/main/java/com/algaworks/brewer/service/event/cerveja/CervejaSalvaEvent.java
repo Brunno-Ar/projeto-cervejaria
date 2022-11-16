@@ -15,9 +15,9 @@ public class CervejaSalvaEvent {
 	public Cerveja getCerveja() {
 		return cerveja;
 	}
-
+	
 	public boolean temFoto() {
 		return !StringUtils.isEmpty(cerveja.getFoto());
 	}
-
+	
 }
