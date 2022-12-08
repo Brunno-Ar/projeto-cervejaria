@@ -28,13 +28,13 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
 	}
-
+	
 	@Override
 	protected Filter[] getServletFilters() {
 		HttpPutFormContentFilter httpPutFormContentFilter = new HttpPutFormContentFilter();
-		return new Filter[] { httpPutFormContentFilter };
+        return new Filter[] { httpPutFormContentFilter };
 	}
-
+	
 	@Override
 	protected void customizeRegistration(Dynamic registration) {
 		registration.setMultipartConfig(new MultipartConfigElement(""));

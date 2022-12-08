@@ -58,12 +58,12 @@ public class Usuario implements Serializable {
 
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
-	
+
 	@PreUpdate
 	private void preUpdate() {
 		this.confirmacaoSenha = senha;
 	}
-
+	
 	public Long getCodigo() {
 		return codigo;
 	}

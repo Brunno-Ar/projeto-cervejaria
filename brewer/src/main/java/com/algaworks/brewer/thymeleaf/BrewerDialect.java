@@ -27,7 +27,6 @@ public class BrewerDialect extends AbstractProcessorDialect {
 		processadores.add(new OrderElementTagProcessor(dialectPrefix));
 		processadores.add(new PaginationElementTagProcessor(dialectPrefix));
 		processadores.add(new MenuAttributeTagProcessor(dialectPrefix));
-
 		return processadores;
 	}
 
