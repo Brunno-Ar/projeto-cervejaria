@@ -131,7 +131,7 @@ public class Usuario implements Serializable {
 	public boolean isNovo() {
 		return codigo == null;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
